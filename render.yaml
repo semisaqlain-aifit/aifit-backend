@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: aifit-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: NODE_VERSION
+        value: "20"
