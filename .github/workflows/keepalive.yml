@@ -1,0 +1,17 @@
+name: Keep Render backend awake
+
+on:
+  schedule:
+    - cron: "*/14 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping health endpoint
+        run: |
+          echo "Pinging $URL"
+          curl -fsSL --max-time 90 "$URL" || exit 1
+        env:
+          URL: https://aifit-backend-u1qb.onrender.com/
